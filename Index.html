@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Afzaal | Flutter Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modern Input Styles */
+        .contact-form { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .contact-form input, .contact-form textarea { padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; }
+        .contact-form button { background: #00d2ff; color: black; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .contact-form button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4); }
+    </style>
+</head>
+<body>
+
+    <div class="blob"></div>
+    <div class="blob2"></div>
+
+    <nav>
+        <div class="logo">Afzaal<span>Dev</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <span class="badge">Available for Projects</span>
+            <h1>Muhammad Afzaal <br><span>Flutter Developer</span></h1> 
+            <p>Building seamless cross-platform mobile experiences with Dart, Firebase, and Clean Architecture.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn primary">Let's Talk</a>
+                <a href="mycv.pdf" class="btn secondary" download>Download CV</a>
+            </div>
+        </div>
+        <div class="hero-img-container" data-aos="zoom-in">
+            <div class="profile-card">
+                <img src="profile.jpeg" alt="Muhammad Afzaal"> 
+                <h3>Muhammad Afzaal</h3>
+                <p>Mobile App Specialist</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="edu-cert">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Qualifications</h2>
+        </div>
+        <div class="grid-container">
+            <div class="glass-card" data-aos="fade-right">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p><strong>BS Information Technology</strong><br>University Of Okara<br>2022 - 2026</p>
+            </div>
+            <div class="glass-card" data-aos="fade-left">
+                <i class="fas fa-certificate"></i>
+                <h3>Certifications & Expertise</h3>
+                <ul>
+                    <li>Flutter Application Development</li>
+                    <li>Firebase / Firestore</li>
+                    <li>State Management (Provider/Riverpod)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title" data-aos="fade-up">Featured Work</h2>
+        <div class="project-grid">
+            
+            <div class="project-card" data-aos="flip-left">
+                <div class="p-img">
+                    <img src="playstore.png" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+                </div>
+                <div class="p-content">
+                    <h3>Zarr App - Smart Finance Manager</h3>
+                    <p>Fintech app with Flutter & Firebase. AI-powered receipt scanning and automated reports.</p>
+                    <a href="https://github.com/iamafzaal311-ui/zarr_smart_fin_manager" target="_blank">View GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="flip-right">
+                <div class="p-img">
+                    <img src="todo.jpeg" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="p-content">
+                    <h3>Do It - Daily Planner</h3>
+                    <p>Clean UI task manager using Provider state management.</p>
+                    <a href="https://github.com/iamafzaal311-ui/do_it_daily_planner" target="_blank">View GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="flip-left">
+                <div class="p-img"></div>
+                <div class="p-content">
+                    <h3>Techpulse Store</h3>
+                    <p>E-commerce solution for smart gadgets and electronics.</p>
+                    <a href="https://github.com/iamafzaal311-ui/techpulse_ecommerce_store" target="_blank">View GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="flip-right">
+                <div class="p-img">
+                    <img src="ic_launcher.png" alt="Weathering App Icon" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="p-content">
+                    <h3>Weathering</h3>
+                    <p>Real-time accurate weather forecasting app using API integration.</p>
+                    <a href="https://github.com/iamafzaal311-ui/weathering" target="_blank">View GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-box" data-aos="zoom-out">
+            <h2>Get In Touch</h2>
+            <p>Ready to bring your app idea to life?</p>
+            
+            <form action="https://formspree.io/f/your-id-here" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div class="social-links" style="margin-top: 40px;">
+                <a href="https://www.upwork.com/freelancers/~01bc7399f70c158200" class="upwork" target="_blank"><i class="fab fa-upwork"></i> Upwork</a>
+                <a href="https://www.linkedin.com/in/muhammad-afzaal-0019813a7" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/iamafzaal311-ui" class="github" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://wa.me/923285753463" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Muhammad Afzaal. Built with ❤️ for Flutter.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>

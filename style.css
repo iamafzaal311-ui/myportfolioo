@@ -1,0 +1,115 @@
+:root {
+    --main-blue: #00d2ff;
+    --main-purple: #928dab;
+    --dark-bg: #0b0e14;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+body {
+    background-color: var(--dark-bg);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background Animated Blobs */
+.blob, .blob2 {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(to right, #00d2ff, #3a7bd5);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.2;
+}
+.blob { top: -100px; left: -100px; }
+.blob2 { bottom: -100px; right: -100px; }
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 8%;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(15px);
+    z-index: 100;
+}
+.logo { font-size: 1.8rem; font-weight: 800; }
+.logo span { color: var(--main-blue); }
+nav ul { display: flex; list-style: none; gap: 30px; }
+nav ul li a { color: white; text-decoration: none; font-weight: 500; }
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    gap: 50px;
+}
+.badge { background: rgba(0, 210, 255, 0.1); color: var(--main-blue); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+.hero-content h1 { font-size: 4rem; margin: 15px 0; }
+.hero-content h1 span { background: linear-gradient(to right, #00d2ff, #928dab); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.btn { padding: 12px 30px; border-radius: 10px; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: 20px;}
+.primary { background: var(--main-blue); color: black; font-weight: bold; }
+.secondary { border: 1px solid white; color: white; margin-left: 15px; }
+
+/* Profile Card */
+.profile-card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.profile-card img { width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--main-blue); margin-bottom: 20px; }
+
+/* Education/Certs Glass Cards */
+.edu-cert { padding: 100px 10%; text-align: center; }
+.grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
+.glass-card {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+.glass-card i { font-size: 2.5rem; color: var(--main-blue); margin-bottom: 20px; }
+.glass-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.08); }
+
+/* Projects */
+.projects { padding: 100px 10%; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+.project-card { background: #161b22; border-radius: 15px; overflow: hidden; }
+.p-img { height: 200px; background: #30363d; }
+.p-content { padding: 20px; }
+.p-content a { color: var(--main-blue); text-decoration: none; margin-top: 10px; display: block; }
+
+/* Contact Section */
+.contact { padding: 100px 10%; text-align: center; }
+.contact-box { background: linear-gradient(145deg, #1e293b, #0f172a); padding: 60px; border-radius: 40px; }
+.social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+.social-links a { padding: 10px 25px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+
+/* Social Colors */
+.upwork { background: #14a800; }
+.linkedin { background: #0077b5; }
+.github { background: #333; }
+.whatsapp { background: #25d366; }
+.indeed { background: #2164f3; }
+
+.mini-socials { margin-top: 30px; font-size: 1.5rem; }
+.mini-socials a { color: white; margin: 0 15px; transition: 0.3s; }
+.mini-socials a:hover { color: var(--main-blue); }
+
+footer { padding: 40px; text-align: center; color: #666; }
+
+@media (max-width: 768px) {
+    .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+    .grid-container { grid-template-columns: 1fr; }
+    .hero-content h1 { font-size: 2.5rem; }
+}
