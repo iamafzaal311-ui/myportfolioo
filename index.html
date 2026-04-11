@@ -1,244 +1,1302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afzaal | Flutter Developer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- Engagement & Custom Project CSS --- */
-        .engagement-section { padding: 60px 8%; text-align: center; }
-        .engagement-container { display: flex; justify-content: center; margin-top: 30px; }
-        .engagement-card { 
-            max-width: 700px; width: 100%; padding: 35px; text-align: left;
-            border: 1px solid rgba(0, 210, 255, 0.2); position: relative;
-        }
-        .e-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .live-tag { 
-            background: rgba(255, 0, 0, 0.1); color: #ff4d4d; 
-            padding: 5px 12px; border-radius: 50px; font-size: 0.7rem; 
-            font-weight: 800; border: 1px solid rgba(255, 0, 0, 0.2);
-            letter-spacing: 1px; animation: blink-red 1.5s infinite;
-        }
-        @keyframes blink-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .e-content h3 span { color: var(--accent); }
-        .e-content p { color: var(--text-dim); margin: 15px 0; font-size: 1.05rem; }
-        .current-project { 
-            background: rgba(255, 255, 255, 0.03); padding: 15px; 
-            border-radius: 12px; border-left: 4px solid var(--accent);
-        }
-        .current-project i { color: var(--accent); margin-right: 10px; }
-        .p-footer { margin-top: 15px; font-size: 0.85rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 8px; }
-        .in-progress-tag { color: var(--text-dim); font-style: italic; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Afzaal | Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --sidebar-bg: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --active-gray: #f1f5f9;
+      --border-color: #e2e8f0;
+      --accent-green: #22c55e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-white); color: var(--text-main); overflow-x: hidden; }
+
+    /* Layout Container */
+    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      position: sticky; top: 0; height: 100vh; padding: 32px 16px;
+      background: var(--sidebar-bg); border-right: 1px solid var(--border-color);
+      display: flex; flex-direction: column; z-index: 1000;
+    }
+
+    .profile-card { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; padding: 0 12px; }
+    .profile-card img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
+    .profile-card p { font-size: 14px; color: var(--text-muted); }
+
+    .nav-menu { flex-grow: 1; display: flex; flex-direction: column; gap: 4px; }
+    .nav-btn {
+      padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 14px;
+      display: flex; align-items: center; gap: 12px; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s ease; border: none; background: transparent;
+      width: 100%; text-align: left;
+    }
+    .nav-btn i { font-size: 18px; width: 20px; }
+    .nav-btn:hover { background: var(--active-gray); color: var(--text-main); }
+    .nav-btn.active { 
+      background: var(--active-gray); color: var(--text-main); 
+      border-right: 3px solid var(--text-main); border-radius: 12px 4px 4px 12px;
+    }
+
+    .label-sm { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin: 30px 0 12px 16px; letter-spacing: 1px; }
+    .social-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+    .social-link {
+      padding: 10px 16px; font-size: 14px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 12px; text-decoration: none; transition: 0.2s;
+    }
+    .social-link:hover { color: var(--text-main); transform: translateX(5px); }
+
+    .resume-download {
+      background: var(--text-main); color: #fff; padding: 16px;
+      border-radius: 14px; text-align: center; font-weight: 700;
+      text-decoration: none; display: flex; justify-content: space-between; align-items: center;
+      transition: opacity 0.2s;
+    }
+    .resume-download:hover { opacity: 0.9; }
+
+    /* --- MAIN CONTENT AREA --- */
+    .main-viewport { padding: 60px 8%; position: relative; background: #fef8f0; min-height: 100vh; }
+    .page-screen { display: none; animation: fadeIn 0.4s ease-out; }
+    .page-screen.active { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    h1 { font-size: 44px; font-weight: 800; margin-bottom: 24px; letter-spacing: -1px; }
+    .content-text { font-size: 18px; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px; }
+    h2 { font-size: 24px; font-weight: 800; margin: 40px 0 20px; }
+
+    /* Project Cards Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .card {
+      padding: 24px; border: 1px solid var(--border-color); border-radius: 20px;
+      transition: 0.3s; cursor: pointer; background: white;
+    }
+    .card:hover { border-color: var(--text-main); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: translateY(-4px); }
+    .card-tag { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .card h4 { font-size: 20px; margin: 8px 0; }
+    .card p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    /* --- PROJECT OVERLAY --- */
+    .project-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out;
+    }
+    .project-overlay.active { opacity: 1; pointer-events: all; }
+    
+    .overlay-backdrop {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px);
+      z-index: 1;
+    }
+    
+    .overlay-content-wrapper {
+      position: relative; z-index: 2; background: var(--bg-white); 
+      border-radius: 20px; box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+      width: 90%; max-width: 950px; max-height: 85vh; overflow-y: auto;
+      padding: 40px; animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .overlay-close-btn {
+      position: absolute; top: 20px; right: 20px; 
+      background: none; border: none; font-size: 28px;
+      color: var(--text-muted); cursor: pointer; 
+      width: 44px; height: 44px; display: flex; align-items: center; 
+      justify-content: center; border-radius: 50%; transition: all 0.2s ease;
+      z-index: 10;
+    }
+    .overlay-close-btn:hover { background: #f0f0f0; color: var(--text-main); }
+    
+    .overlay-main-content {
+      display: flex; gap: 20px; flex-wrap: wrap-reverse; align-items: flex-start;
+    }
+    
+    .overlay-details {
+      flex: 1; min-width: 300px; padding-top: 10px;
+    }
+    
+    .overlay-tag {
+      font-size: 11px; font-weight: 800; color: var(--accent-green);
+      text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;
+    }
+    
+    .overlay-title {
+      font-size: 36px; font-weight: 800; margin: 0 0 24px 0; color: var(--text-main);
+    }
+    
+    .overlay-section {
+      margin-bottom: 28px;
+    }
+    .overlay-section h3 {
+      font-size: 14px; font-weight: 700; color: var(--text-main);
+      margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .overlay-section p {
+      font-size: 15px; color: var(--text-muted); line-height: 1.7;
+    }
+    
+    .features-list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .features-list li {
+      font-size: 14px; color: var(--text-muted); margin-bottom: 10px;
+      padding-left: 20px; position: relative; line-height: 1.6;
+    }
+    .features-list li .feature-icon {
+      position: absolute; left: 0; color: var(--accent-green); font-weight: bold;
+    }
+    
+    .overlay-actions {
+      margin-top: 32px;
+    }
+    
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--text-main); color: white; padding: 14px 28px;
+      border-radius: 12px; text-decoration: none; font-weight: 700;
+      font-size: 14px; transition: all 0.2s ease;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    
+    .overlay-preview {
+      width: 300px; display: flex; flex-direction: column; align-items: center;
+    }
+    
+    .phone-mockup {
+      width: 280px; height: 560px; background: #000; 
+      border: 10px solid #222; border-radius: 36px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: sticky; top: 40px;
+    }
+    
+    .phone-screen { width: 100%; height: 100%; overflow: hidden; }
+    .phone-content {
+      width: 100%; height: 100%; background: #f8f8f8;
+      display: flex; align-items: center; justify-content: center;
+      color: #ccc; font-size: 40px; flex-direction: column; gap: 10px;
+      overflow: hidden;
+    }
+    .phone-content img, .phone-content video, .phone-content iframe {
+      width: 100%; height: 100%; object-fit: cover;
+      border: none;
+    }
+    .phone-content .snaps-gallery {
+      width: 100%; height: 100%; padding: 12px;
+      overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+    }
+    .phone-content .snaps-gallery img {
+      width: 100%; border-radius: 14px;
+      object-fit: cover;
+    }
+
+    .slide-frame {
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #111;
+    }
+
+    .slide-track {
+      display: flex;
+      width: auto; height: 100%;
+      transition: transform 0.35s ease;
+    }
+
+    .slide-item {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-item img {
+      width: 100%; height: 100%; object-fit: contain;
+      border-radius: 24px;
+      background: #111;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-main);
+      z-index: 2;
+    }
+
+    .carousel-control.left { left: 12px; }
+    .carousel-control.right { right: 12px; }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 14px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px;
+      z-index: 2;
+    }
+
+    .carousel-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%; background: rgba(255, 255, 255, 0.65);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent-green);
+      transform: scale(1.2);
+    }
+
+    .preview-tabs {
+      display: flex; gap: 10px; margin-top: 16px; width: 100%;
+    }
+    .tab-btn {
+      flex: 1; padding: 10px; border: 1px solid var(--border-color);
+      border-radius: 10px; background: white; color: var(--text-main);
+      font-weight: 600; font-size: 13px; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover { border-color: var(--accent-green); color: var(--accent-green); }
+    
+    @media (max-width: 768px) {
+      .overlay-content-wrapper { width: 95%; max-height: 90vh; padding: 24px; }
+      .overlay-main-content { gap: 20px; flex-direction: column-reverse; }
+      .overlay-preview { width: 100%; }
+      .phone-mockup { position: static; width: 100%; max-width: 280px; height: 500px; margin: 0 auto; }
+      .overlay-title { font-size: 26px; }
+    }
+
+    /* --- MEDIA MODALS (Video & Snaps) --- */
+    .media-modal {
+      position: relative;
+      width: 100%;
+      background: transparent;
+      display: none !important;
+      padding: 0;
+      margin-top: 16px;
+    }
+
+    .media-modal.active {
+      display: block !important;
+    }
+
+    .media-modal-content {
+      position: relative;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .media-modal-content iframe {
+      display: block;
+      width: 100%;
+      border: none;
+      min-height: 360px;
+    }
+
+    .snaps-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .snaps-gallery img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #f0f0f0;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 10;
+    }
+
+    .modal-close:hover { background: #e0e0e0; }
+
+    .tab-btn.active {
+      border-color: var(--accent-green) !important;
+      color: var(--accent-green) !important;
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    /* Contact Screen */
+    .form-group { margin-bottom: 20px; }
+    input, textarea {
+      width: 100%; padding: 16px; border: 1px solid var(--border-color);
+      border-radius: 12px; font-family: inherit; font-size: 15px;
+    }
+    .send-btn {
+      padding: 16px 32px; background: var(--text-main); color: white;
+      border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .send-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .cancel-btn {
+      padding: 16px 32px; background: #e2e8f0; color: var(--text-main);
+      border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cancel-btn:hover { background: #cbd5e1; }
+
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px; margin-top: 40px; margin-bottom: 40px;
+    }
+
+    .contact-card {
+      background: white; border: 2px solid var(--border-color);
+      padding: 32px 24px; border-radius: 16px; text-align: center;
+      cursor: pointer; transition: all 0.3s ease;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent-green); transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(34, 197, 94, 0.15);
+    }
+
+    .contact-icon {
+      width: 60px; height: 60px; background: #f1f5f9;
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: var(--text-main); transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon { background: var(--accent-green); color: white; }
+
+    .contact-icon.whatsapp { background: rgba(37, 211, 102, 0.1); color: #25d366; }
+    .contact-card:hover .contact-icon.whatsapp { background: #25d366; color: white; }
+
+    .contact-icon.upwork { background: rgba(0, 128, 0, 0.1); color: #008000; }
+    .contact-card:hover .contact-icon.upwork { background: #008000; color: white; }
+
+    .contact-icon.linkedin { background: rgba(0, 119, 181, 0.1); color: #0077b5; }
+    .contact-card:hover .contact-icon.linkedin { background: #0077b5; color: white; }
+
+    .contact-card h3 { font-size: 18px; font-weight: 700; margin: 0; }
+    .contact-card p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+    .contact-cta {
+      font-size: 12px; font-weight: 700; color: var(--accent-green);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto;
+    }
+
+    /* Floating WhatsApp */
+    .wa-btn {
+      position: fixed; bottom: 32px; right: 32px; background: var(--accent-green);
+      color: white; padding: 14px 24px; border-radius: 30px;
+      display: flex; align-items: center; gap: 10px; font-weight: 700;
+      text-decoration: none; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3); z-index: 1000;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; } /* Mobile menu can be added if needed */
+      .main-viewport { padding: 40px 20px; }
+      h1 { font-size: 32px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="glow-bg"></div>
-
-    <nav class="glass-nav">
-        <div class="nav-left">
-            <img src="profile.jpeg" class="nav-avatar" alt="Afzaal">
-            <div class="logo">Afzaal<span>Dev</span></div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/48x48/0f172a/ffffff?text=MA" alt="M. Afzaal">
+        <div class="profile-info">
+          <h3>Muhammad Afzaal</h3>
+          <p>Developer</p>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#engagement">Status</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#contact">Hire</a></li>
-        </ul>
-    </nav>
+      </div>
 
-    <main class="dashboard-container">
-        <section id="home" class="hero-section" data-aos="fade-right">
-            <div class="hero-badge"><i class="fas fa-bolt"></i> Flutter Specialist</div>
-            <h1>Hi, I'm <span>Afzaal</span></h1>
-            <p>Creating high-performance mobile apps with Flutter & Firebase. I turn ideas into seamless digital experiences.</p>
-            <div class="action-btns">
-                <a href="#contact" class="btn glow-btn">Start Project</a>
-                <a href="mycv.pdf" class="btn outline-btn" download>View Resume</a>
-            </div>
-        </section>
+      <nav class="nav-menu">
+        <button class="nav-btn active" onclick="showPage('home')"><i class="fa-solid fa-bolt"></i> Home</button>
+        <button class="nav-btn" onclick="showPage('about')"><i class="fa-regular fa-comment-dots"></i> About</button>
+        <button class="nav-btn" onclick="showPage('projects')"><i class="fa-solid fa-briefcase"></i> Projects</button>
+        <button class="nav-btn" onclick="showPage('articles')"><i class="fa-regular fa-file-lines"></i> Articles</button>
+        <button class="nav-btn" onclick="showPage('contact')"><i class="fa-regular fa-envelope"></i> Contact</button>
+      </nav>
 
-        <section class="profile-dashboard" data-aos="fade-left">
-            <div class="main-card glass">
-                <div class="image-wrapper">
-                    <img src="profile.jpeg" alt="Muhammad Afzaal">
-                    <div class="status-indicator">
-                        <span class="pulse"></span> Available for Work
-                    </div>
-                </div>
-                <h2>Muhammad Afzaal</h2>
-                <p class="subtitle">Full-Stack Mobile Developer</p>
-                
-                <div class="social-list">
-                    <a href="https://www.linkedin.com/in/muhammad-afzaal-0019813a7" target="_blank" class="s-link"><i class="fab fa-linkedin" style="color:#0077b5"></i> LinkedIn <i class="fas fa-chevron-right"></i></a>
-                    <a href="https://github.com/iamafzaal311-ui" target="_blank" class="s-link"><i class="fab fa-github"></i> GitHub <i class="fas fa-chevron-right"></i></a>
-                    <a href="https://wa.me/923285753463" target="_blank" class="s-link"><i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp <i class="fas fa-chevron-right"></i></a>
-                    <a href="#" target="_blank" class="s-link"><i class="fas fa-briefcase" style="color:#2164f3"></i> Indeed <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
+      <div class="label-sm">Socials</div>
+      <div class="social-list">
+        <a href="https://github.com/iamafzaal311-ui" target="_blank" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.facebook.com/share/1HkMc8evo9/" target="_blank" class="social-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="https://www.linkedin.com/in/muhammad-afzaal-0019813a7?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-link"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://www.upwork.com/freelancers/~01bc7399f70c158200" target="_blank" class="social-link"><i class="fa-brands fa-upwork"></i> Upwork</a>
+      </div>
 
-    <section id="engagement" class="engagement-section" data-aos="fade-up">
-        <h2 class="section-title">Current Engagement</h2>
-        <div class="engagement-container">
-            <div class="engagement-card glass">
-                <div class="e-header">
-                    <span class="live-tag">LIVE WORKING</span>
-                    <i class="fas fa-laptop-code" style="color: var(--accent); font-size: 1.5rem;"></i>
-                </div>
-                <div class="e-content">
-                    <h3>Mastering <span>Clean Architecture</span></h3>
-                    <p>Currently deep-diving into <strong>BAZAR 24</strong> with <strong>Codefying Tech Karachi</strong> to build apps that are not just fast, but industrially scalable.</p>
-                    <div class="current-project">
-                        <p><i class="fas fa-rocket"></i> Currently Building: <strong>BAZAR 24 V1.0.1</strong> (E- Commerce store for Tech Gadgets)</p>
-                    </div>
-                </div>
-            </div>
+      <a href="mycv.pdf" class="resume-download" target="_blank">
+        Read Resume <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
+      </a>
+    </aside>
+
+    <main class="main-viewport">
+      
+      <section id="home" class="page-screen active">
+  <h1 style="margin-bottom: 10px;">Hello there! I'm <span style="color: var(--text-main);">Muhammad Afzaal</span></h1>
+  <p style="font-size: 18px; color: var(--text-muted); font-weight: 600; margin-bottom: 30px;">
+    Mobile Application Developer & Flutter Specialist
+  </p>
+  
+  <p class="content-text">
+    Main aik dedicated <strong>Full-Stack Flutter Developer</strong> hoon aur filhal <strong>BS Information Technology</strong> ke 7th semester mein hoon. Mera focus <em>high-performance</em> mobile apps aur <em>scalable backend systems</em> banane par hai. 
+  </p>
+
+  <p class="content-text">
+    Maine <strong>Zarr Finance Tracker</strong>, <strong>QR Code Reader & Generator</strong>, <strong>Repflex Gym Workout</strong>, aur <strong>Image to PDF Converter</strong> jaise complex projects successfully deploy kiye hain. Mera maqsad hamesha <strong>Pixel-Perfect UI</strong> aur <strong>Robust Codebase</strong> ka combination faraham karna hota hai.
+  </p>
+
+  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 40px 0;">
+
+  <h2>What I’ve been working on</h2>
+  
+  <div class="grid">
+    <div class="card" onclick="showPage('projects')" style="border-left: 4px solid var(--text-main);">
+      <span class="card-tag">Featured Project</span>
+      <h4>Zarr Finance Tracker</h4>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Aik premium <strong>Personal Finance App</strong> jo daily expenses aur earnings ko track karti hai. Isme <em>Visual Graphs</em> aur <em>Data Persistence</em> ka behtreen istemal kiya gaya hai.
+      </p>
+    </div>
+
+    <div class="card" onclick="showPage('about')" style="background: var(--sidebar-bg);">
+      <span class="card-tag">Domain Expertise</span>
+      <h4>Pharmacy Operations</h4>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Experience in <strong>Inventory Management</strong> aur business record-keeping. Ye background mujhe business logic aur complex data entry systems ko samajhne mein madad deta hai.
+      </p>
+    </div>
+
+    <div class="card" onclick="showPage('projects')">
+      <span class="card-tag">Utility</span>
+      <h4>QR Code Reader & Generator</h4>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Scan and create QR codes with custom options and history tracking.
+      </p>
+    </div>
+
+    <div class="card" onclick="showPage('projects')">
+      <span class="card-tag">Fitness</span>
+      <h4>Repflex Gym Workout</h4>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Comprehensive workout tracker with personalized plans and progress monitoring.
+      </p>
+    </div>
+
+    <div class="card" onclick="showPage('projects')">
+      <span class="card-tag">Utility</span>
+      <h4>Image to PDF Converter</h4>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Convert multiple images into a single PDF document easily.
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top: 50px; display: flex; gap: 15px;">
+    <button onclick="showPage('projects')" class="send-btn" style="padding: 12px 24px; font-size: 14px;">
+      View All Projects
+    </button>
+    <button onclick="showPage('contact')" class="nav-btn" style="border: 1px solid var(--border-color); padding: 12px 24px;">
+      Let's Talk
+    </button>
+  </div>
+</section>
+
+      <section id="about" class="page-screen">
+  <h1>Professional Profile</h1>
+  
+  <p class="content-text">
+    Hi, I’m <strong>Muhammad Afzaal</strong>, a <em>Mobile Application Developer</em> specializing in creating robust, scalable, and visually stunning applications. With a deep focus on the <strong>Flutter ecosystem</strong>, I transform complex ideas into high-performance mobile solutions that provide a <u>world-class user experience</u>.
+  </p>
+
+  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 40px 0;">
+
+  <h2>Technical Expertise</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h4 style="color: var(--text-main); margin-bottom: 12px;">
+        <i class="fa-solid fa-mobile-screen" style="margin-right: 8px; color: var(--text-main);"></i> 
+        Mobile Framework
+      </h4>
+      <ul style="list-style: none; color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        <li>• <strong>Flutter:</strong> Expert in building cross-platform apps for Android and iOS.</li>
+        <li>• <strong>Dart:</strong> Proficient in writing <em>clean, asynchronous</em>, and maintainable code.</li>
+        <li>• <strong>State Management:</strong> Specialized in <strong>Provider</strong> to ensure app stability.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4 style="color: var(--text-main); margin-bottom: 12px;">
+        <i class="fa-solid fa-palette" style="margin-right: 8px; color: var(--text-main);"></i> 
+        UI/UX Design
+      </h4>
+      <ul style="list-style: none; color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        <li>• <strong>Modern Trends:</strong> Skilled in <em>Glassmorphism</em>, Neumorphism, and Minimalist designs.</li>
+        <li>• <strong>Custom Painters:</strong> Experience with <strong>SVG path data</strong> and drawing modules.</li>
+        <li>• <strong>Pixel-Perfect:</strong> Translating designs into high-fidelity widgets with <em>smooth animations</em>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4 style="color: var(--text-main); margin-bottom: 12px;">
+        <i class="fa-solid fa-database" style="margin-right: 8px; color: var(--text-main);"></i> 
+        Backend & Data
+      </h4>
+      <ul style="list-style: none; color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        <li>• <strong>Firebase:</strong> Expertise in Auth, Firestore, and <em>Cloud Messaging</em>.</li>
+        <li>• <strong>Supabase:</strong> Proficient in PostgreSQL and open-source backend services.</li>
+        <li>• <strong>Persistence:</strong> Implementing data storage using <em>Shared Preferences</em>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4 style="color: var(--text-main); margin-bottom: 12px;">
+        <i class="fa-solid fa-link" style="margin-right: 8px; color: var(--text-main);"></i> 
+        API & Services
+      </h4>
+      <ul style="list-style: none; color: var(--text-muted); font-size: 15px; line-height: 1.8;">
+        <li>• <strong>REST APIs:</strong> Professional experience in connecting front-ends with complex APIs.</li>
+        <li>• <strong>Data Handling:</strong> Efficient <strong>JSON Parsing</strong> and mapping to Dart models.</li>
+        <li>• <strong>Features:</strong> Integrating <em>Google Maps</em>, Payment Gateways, and <strong>OCR</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 50px; padding: 30px; background: var(--active-gray); border-radius: 20px; border-left: 5px solid var(--text-main);">
+    <h3 style="margin-bottom: 15px; font-weight: 800;">My Professional Philosophy</h3>
+    <p class="content-text" style="margin-bottom: 0; font-style: italic;">
+      I believe in <strong>Clean Architecture</strong>. My code isn't just about making things work; it's about making them <em>scalable, testable, and easy to maintain</em>. From the initial splash screen to complex database interactions, I ensure every layer of the app is optimized for performance.
+    </p>
+  </div>
+</section>
+<section id="projects" class="page-screen">
+  <h1>Featured Projects</h1>
+  <p class="content-text">Tap on a project to view features, mobile previews, and video demonstrations.</p>
+  
+  <div class="grid">
+    <div class="card" onclick="openProject('zarr')">
+      <span class="card-tag">Fintech</span>
+      <h4>Zarr Finance</h4>
+      <p>Expense tracker with visual graphs and daily earnings management.</p>
+    </div>
+    <div class="card" onclick="openProject('vemta')">
+      <span class="card-tag">AI / Utility</span>
+      <h4>Vemta AI</h4>
+      <p>Report analyzer and OCR text scanning tool.</p>
+    </div>
+    <div class="card" onclick="openProject('qr')">
+      <span class="card-tag">Utility</span>
+      <h4>QR Code Reader & Generator</h4>
+      <p>Scan and create QR codes with custom options.</p>
+    </div>
+    <div class="card" onclick="openProject('repflex')">
+      <span class="card-tag">Fitness</span>
+      <h4>Repflex Gym Workout</h4>
+      <p>Track workouts and monitor fitness progress.</p>
+    </div>
+    <div class="card" onclick="openProject('imgpdf')">
+      <span class="card-tag">Utility</span>
+      <h4>Image to PDF Converter</h4>
+      <p>Convert images to PDF documents easily.</p>
+    </div>
+    <div class="card" onclick="openProject('agewise')">
+      <span class="card-tag">Utility</span>
+      <h4>Agewise Age Calculator</h4>
+      <p>Calculate age and get milestone insights.</p>
+    </div>
+    <div class="card" onclick="openProject('mehndi')">
+      <span class="card-tag">Design</span>
+      <h4>Mehndi & Nail Design Walltrix</h4>
+      <p>HD designs for mehndi and nail art.</p>
+    </div>
+    <div class="card" onclick="openProject('decision')">
+      <span class="card-tag">Entertainment</span>
+      <h4>Decision Doom Fortune Wheel</h4>
+      <p>Fun decision-making fortune wheel.</p>
+    </div>
+    <div class="card" onclick="openProject('tareek')">
+      <span class="card-tag">Utility</span>
+      <h4>Tareek - Bikrami Calendar</h4>
+      <p>Bikrami calendar with events and reminders.</p>
+    </div>
+  </div>
+
+  <div id="projectOverlay" class="project-overlay">
+    <div class="overlay-backdrop" onclick="closeProject()"></div>
+    <div class="overlay-content-wrapper">
+      <button class="overlay-close-btn" onclick="closeProject()" aria-label="Close">
+        <i class="fa-solid fa-times"></i>
+      </button>
+      <div class="overlay-main-content">
+        <div class="overlay-details">
+          <span id="ovTag" class="overlay-tag">CATEGORY</span>
+          <h1 id="ovTitle" class="overlay-title">Project Name</h1>
+          <div class="overlay-section">
+            <h3>Overview</h3>
+            <p id="ovDesc"></p>
+          </div>
+          <div class="overlay-section">
+            <h3>Core Features</h3>
+            <ul id="ovFeatures" class="features-list"></ul>
+          </div>
+          <div class="overlay-actions">
+            <a id="ovGithub" href="#" target="_blank" class="btn-primary">
+              <i class="fa-brands fa-github"></i> View Source Code
+            </a>
+          </div>
+          <div class="preview-tabs">
+            <button class="tab-btn active" onclick="showMediaTab('video', event)"><i class="fa-solid fa-play"></i> Video</button>
+            <button class="tab-btn" onclick="showMediaTab('snaps', event)"><i class="fa-solid fa-image"></i> Snaps</button>
+          </div>
         </div>
-    </section>
-
-    <section id="education" class="edu-section" data-aos="fade-up">
-        <h2 class="section-title">Academic Background</h2>
-        <div class="edu-grid">
-            <div class="edu-card glass">
-                <i class="fas fa-university"></i>
-                <h3>BS Information Technology</h3>
-                <p>University of Okara | 2022 - 2026</p>
+        <div class="overlay-preview">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div id="ovMedia" class="phone-content">
+                <i class="fa-solid fa-mobile-screen"></i>
+              </div>
             </div>
-            <div class="edu-card glass">
-                <i class="fas fa-code"></i>
-                <h3>Core Tech Stack</h3>
-                <p>Flutter, Dart, Firebase, Provider/Riverpod</p>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="projects" class="projects-section">
-        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-        <div class="project-grid">
-            <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">Smart Managing and Google ML Kit</span>
-                    <a href="https://github.com/iamafzaal311-ui/zarr_smart_fin_manager/tree/master" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>Zarr Finance</h3>
-                <p>AI-based expense tracking system with real-time analytics and Firebase integration.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
+<script>
+// Project Data Object with Video & Snaps
+const projectDetails = {
+    zarr: {
+        title: "Zarr Finance",
+        tag: "Fintech",
+        desc: "A personal finance tracker that manages daily expenses and earnings with integrated visual graphs for better financial insights.",
+        features: ["Expense & Earning Tracking", "Visual Data Analytics", "Secure Data Persistence", "Clean UI/UX"],
+        link: "https://github.com/iamafzaal311-ui/zarr_smart_fin_manager",
+        video: "https://www.youtube-nocookie.com/embed/zWJgJFH6ogE?rel=0",
+        snaps: [
+            "assets/zarr/z1.jpeg",
+            "assets/zarr/z2.jpeg",
+            "assets/zarr/z9.jpeg",
+            "assets/zarr/z3.jpeg",
+            "assets/zarr/z4.jpeg",
+            "assets/zarr/z5.jpeg",
+            "assets/zarr/z6.jpeg",
+            "assets/zarr/z7.jpeg",
+            "assets/zarr/z8.jpeg"
 
-            <div class="project-card glass" data-aos="zoom-in" data-aos-delay="100">
-                <div class="p-header">
-                    <span class="p-tag">Clean and Richer UI/UX</span>
-                    <a href="https://github.com/iamafzaal311-ui/Do_-it_Daily_Planner/tree/master" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>Do It - Planner</h3>
-                <p>Clean UI task manager focused on productivity using Provider state management.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
+        ]
+    },
+  
+    vemta: {
+        title: "Vemta AI",
+        tag: "AI / Utility",
+        desc: "Report analyzer and OCR text scanning tool that converts images into editable digital text using AI.",
+        features: ["High-accuracy OCR", "Report Summarization", "Batch Processing", "Export to PDF/Text"],
+        link: "https://github.com/yourusername/vemta",
+        video: "https://www.youtube-nocookie.com/embed/SCE-QeDfBZQ",
+        snaps: [
+          "assets/vem/v1.jpeg",
+          "assets/vem/v2.jpeg",
+          "assets/vem/v3.jpeg",
+          "assets/vem/v4.jpeg",
+          "assets/vem/v5.jpeg",
+          "assets/vem/v6.jpeg",
+        ]
+    },
+    qr: {
+        title: "QR Code Reader & Generator",
+        tag: "Utility",
+        desc: "A versatile app for scanning and creating QR codes with advanced features.",
+        features: ["QR Code Scanning", "QR Code Generation", "Custom Design Options", "History & Sharing"],
+        link: "https://github.com/iamafzaal311-ui/qr-code-app",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+              "assets/qr/q1.jpeg",
+              "assets/qr/q2.jpeg",
+              "assets/qr/q3.jpeg",
+              "assets/qr/q4.jpeg",
+              "assets/qr/q5.jpeg",
 
-            <div class="project-card glass" data-aos="zoom-in" data-aos-delay="200">
-                <div class="p-header">
-                    <span class="p-tag">API Integration</span>
-                    <a href="https://github.com/iamafzaal311-ui/weather_app/tree/master" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>Weathering App</h3>
-                <p>Real-time weather data fetching with OpenWeather API and dynamic location services.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
+          
+        ]
+    },
+    repflex: {
+        title: "Repflex Gym Workout",
+        tag: "Fitness",
+        desc: "A comprehensive gym workout tracker with personalized plans and progress monitoring.",
+        features: ["Workout Plans", "Progress Tracking", "Exercise Library", "Timer & Reps Counter"],
+        link: "https://github.com/iamafzaal311-ui/repflex-gym",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+          
+              "assets/rep/r1.jpeg",
+              "assets/rep/r2.jpeg",
+              "assets/rep/r3.jpeg",
+              "assets/rep/r4.jpeg",
+              "assets/rep/r5.jpeg",
+              "assets/rep/r6.jpeg",
+              "assets/rep/r7.jpeg",
+              "assets/rep/r8.jpeg",
+              "assets/rep/r9.jpeg",
+              "assets/rep/r10.jpeg",
+        ]
+    },
+    imgpdf: {
+        title: "Image to PDF Converter",
+        tag: "Utility",
+        desc: "Convert multiple images into a single PDF document with ease.",
+        features: ["Batch Conversion", "Image Optimization", "PDF Customization", "Cloud Storage"],
+        link: "https://github.com/iamafzaal311-ui/image-pdf-converter",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+            "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=800&fit=crop"
+        ]
+    },
+    agewise: {
+        title: "Agewise Age Calculator",
+        tag: "Utility",
+        desc: "Calculate age in various formats and get insights based on age milestones.",
+        features: ["Age Calculation", "Milestone Alerts", "Date Difference", "Custom Formats"],
+        link: "https://github.com/iamafzaal311-ui/agewise-calculator",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+          "assets/age/a1.jpeg",
+          "assets/age/a2.jpeg",
+          "assets/age/a3.jpeg",
+          "assets/age/a4.jpeg",
+          "assets/age/a5.jpeg",
+          "assets/age/a6.jpeg",
+          "assets/age/a7.jpeg",
+          "assets/age/a8.jpeg",
+          
 
-            <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">Logic & Mapping</span>
-                    <a href="https://github.com/iamafzaal311-ui/punjabi-bakrami-calender/tree/master" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>Tareekh</h3>
-                <p>Punjabi/Bikrami calendar solving date conversion for regional lunar dates.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
+        ]
+    },
+    mehndi: {
+        title: "Mehndi & Nail Design Walltrix",
+        tag: "Design",
+        desc: "HD backgrounds and designs for mehndi and nail art inspiration.",
+        features: ["HD Galleries", "Design Categories", "Download Options", "Customization Tools"],
+        link: "https://github.com/iamafzaal311-ui/mehndi-nail-designs",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1598300042200-8e8e543b6e5c?w=500&h=800&fit=crop"
+        ]
+    },
+    decision: {
+        title: "Decision Doom Fortune Wheel",
+        tag: "Entertainment",
+        desc: "A fun fortune wheel for making decisions and random selections.",
+        features: ["Custom Options", "Spin Animation", "Sound Effects", "Save Results"],
+        link: "https://github.com/iamafzaal311-ui/decision-wheel",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&h=800&fit=crop"
+        ]
+    },
+    tareek: {
+        title: "Tareek - Bikrami Calendar",
+        tag: "Utility",
+        desc: "A calendar app based on the Bikrami calendar system with events and reminders.",
+        features: ["Bikrami Dates", "Event Management", "Reminders", "Cultural Holidays"],
+        link: "https://github.com/iamafzaal311-ui/tareek-calendar",
+        video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+        snaps: [
+            "https://images.unsplash.com/photo-1506784983877-45594efa75ff?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=500&h=800&fit=crop"
+        ]
+    }
+};
 
-           <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">tracking and record managing</span>
-                    <a href="https://github.com/iamafzaal311-ui/RepFlex---Gym-Workout" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>RepFlex - Workout Tracker</h3>
-                <p>A smart workout tracking app with personalized exercise routines and progress analytics.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
+function openProject(id) {
+    currentProjectId = id;
+    const data = projectDetails[id];
+    
+    // Fill the details
+    document.getElementById('ovTitle').innerText = data.title;
+    document.getElementById('ovTag').innerText = data.tag;
+    document.getElementById('ovDesc').innerText = data.desc;
+    document.getElementById('ovGithub').href = data.link;
 
-            <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">Logic & Mapping</span>
-                    <a href="https://github.com/iamafzaal311-ui/Decision-Doom-Fortune-Wheel" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>Decision Doom - Fortune Wheel</h3>
-                <p>A fun and interactive fortune wheel app for making decisions with a spin of the wheel.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
-            <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">Api Integeration and assets</span>
-                    <a href="https://github.com/iamafzaal311-ui/WallTrix" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>WallTrix</h3>
-                <p>App with HD - Wallpapers easy and quick to use just single click away.</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
-               <div class="project-card glass" data-aos="zoom-in">
-                <div class="p-header">
-                    <span class="p-tag">Api Integeration and local Database for downloading</span>
-                    <a href="https://github.com/iamafzaal311-ui/StyleSnap---LAtest-Mehndi-makeup-designs/releases/tag/mehndi_desings" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <h3>StyleSnap</h3>
-                <p>Bridging the gap between fashion and technology with high-performance Flutter solutions..</p>
-                <div class="p-footer">View Source <i class="fas fa-arrow-right"></i></div>
-            </div>
-            
+    const featuresList = document.getElementById('ovFeatures');
+    featuresList.innerHTML = "";
+    data.features.forEach(f => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.className = 'feature-icon';
+        span.innerText = '→';
+        li.appendChild(span);
+        li.appendChild(document.createTextNode(f));
+        featuresList.appendChild(li);
+    });
 
-            
-                
-        
-    </section>
+    // Reset media tabs and show default video preview
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    closeMediaModal();
+    showMediaTab('video');
 
-    <section id="contact" class="contact-section" data-aos="fade-up">
-        <div class="contact-container glass">
-            <h2>Send a Message</h2>
-            <form action="https://api.web3forms.com/submit" method="POST" class="dash-form">
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                </div>
-                <textarea name="message" rows="5" placeholder="Project Details..." required></textarea>
-                <button type="submit" class="btn glow-btn">Send Message <i class="fas fa-paper-plane"></i></button>
-            </form>
-        </div>
-    </section>
+    // Show Overlay with smooth animation
+    const overlay = document.getElementById('projectOverlay');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    <footer>
-        <p>© 2026 Muhammad Afzaal. Built with Flutter Vibe.</p>
-    </footer>
+function closeProject() {
+    const overlay = document.getElementById('projectOverlay');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-        
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.glass-nav');
-            if (window.scrollY > 50) {
-                nav.style.background = "rgba(5, 7, 10, 0.9)";
-                nav.style.padding = "8px 20px";
-            } else {
-                nav.style.background = "rgba(255, 255, 255, 0.02)";
-                nav.style.padding = "10px 25px";
+// Close overlay on backdrop click and ESC key
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('projectOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) {
+                closeProject();
             }
         });
-    </script>
+    }
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('projectOverlay');
+            if (overlay && overlay.classList.contains('active')) {
+                closeProject();
+            }
+        }
+    });
+    
+    // Load technologies on page load
+    loadTechnologies();
+});
+
+// Page Navigation Function
+function showPage(pageId) {
+    // Hide all page screens
+    const screens = document.querySelectorAll('.page-screen');
+    screens.forEach(screen => screen.classList.remove('active'));
+    
+    // Update nav buttons
+    const navBtns = document.querySelectorAll('.nav-btn');
+    navBtns.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected page
+    const selectedPage = document.getElementById(pageId);
+    if (selectedPage) {
+        selectedPage.classList.add('active');
+    }
+    
+    // Update active nav button
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+    
+    // Load articles if articles page is selected
+    if (pageId === 'articles') {
+        loadTechnologies();
+    }
+}
+
+// Show Video or Snaps in Media Modal
+let currentProjectId = null;
+let currentSnapIndex = 0;
+
+function showMediaTab(type, e) {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    if (e && e.target) {
+        e.target.closest('.tab-btn').classList.add('active');
+    } else {
+        const defaultButton = Array.from(tabButtons).find(btn => btn.textContent.toLowerCase().includes(type));
+        defaultButton?.classList.add('active');
+    }
+    
+    const mediaArea = document.getElementById('ovMedia');
+    const project = projectDetails[currentProjectId];
+    
+    if (!project || !mediaArea) return;
+    mediaArea.innerHTML = '';
+    
+    if (type === 'video') {
+        const iframe = document.createElement('iframe');
+        iframe.src = getYoutubeEmbedUrl(project.video);
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        mediaArea.appendChild(iframe);
+    } else if (type === 'snaps') {
+        currentSnapIndex = 0;
+        renderSnapsCarousel(project);
+    }
+}
+
+function renderSnapsCarousel(project) {
+    const mediaArea = document.getElementById('ovMedia');
+    if (!mediaArea) return;
+
+    const frame = document.createElement('div');
+    frame.className = 'slide-frame';
+
+    const track = document.createElement('div');
+    track.className = 'slide-track';
+    project.snaps.forEach((snap, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide-item';
+        const img = document.createElement('img');
+        img.src = snap;
+        img.alt = `${project.title} snapshot ${idx + 1}`;
+        img.onclick = () => expandImage(snap);
+        slide.appendChild(img);
+        track.appendChild(slide);
+    });
+
+    const leftBtn = document.createElement('button');
+    leftBtn.className = 'carousel-control left';
+    leftBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    leftBtn.onclick = () => changeSnap(-1, project);
+
+    const rightBtn = document.createElement('button');
+    rightBtn.className = 'carousel-control right';
+    rightBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    rightBtn.onclick = () => changeSnap(1, project);
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    project.snaps.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        if (idx === currentSnapIndex) dot.classList.add('active');
+        dot.onclick = () => goToSnap(idx, project);
+        dots.appendChild(dot);
+    });
+
+    frame.appendChild(track);
+    frame.appendChild(leftBtn);
+    frame.appendChild(rightBtn);
+    frame.appendChild(dots);
+    mediaArea.appendChild(frame);
+
+    updateSnapPosition(project);
+}
+
+function changeSnap(direction, project) {
+    const maxIndex = project.snaps.length - 1;
+    currentSnapIndex = Math.min(maxIndex, Math.max(0, currentSnapIndex + direction));
+    updateSnapPosition(project);
+}
+
+function goToSnap(index, project) {
+    currentSnapIndex = index;
+    updateSnapPosition(project);
+}
+
+function updateSnapPosition(project) {
+    const track = document.querySelector('.slide-track');
+    if (!track) return;
+    track.style.transform = `translateX(-${currentSnapIndex * 100}%)`;
+
+    document.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSnapIndex);
+    });
+}
+function getYoutubeEmbedUrl(url) {
+    if (!url) return '';
+    const match = url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/i);
+    if (match && match[1]) {
+        return `https://www.youtube-nocookie.com/embed/${match[1]}?rel=0&showinfo=0&modestbranding=1`;
+    }
+    return url;
+}
+
+function closeMediaModal() {
+    const mediaArea = document.getElementById('ovMedia');
+    if (mediaArea) {
+        mediaArea.innerHTML = '<i class="fa-solid fa-mobile-screen"></i>';
+    }
+}
+
+function expandImage(src) {
+    const expander = document.createElement('div');
+    expander.onclick = () => expander.remove();
+    expander.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:10000;display:flex;align-items:center;justify-content:center;cursor:pointer;';
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.cssText = 'max-width:90%;max-height:90%;border-radius:12px;';
+    expander.appendChild(img);
+    document.body.appendChild(expander);
+}
+
+// Fetch Technologies from API
+let technologiesCache = null;
+
+async function loadTechnologies() {
+    if (technologiesCache) {
+        displayTechnologies(technologiesCache);
+        return;
+    }
+    
+    try {
+        // Try to fetch from GitHub API for popular Dart projects
+        const response = await fetch('https://api.github.com/search/repositories?q=language:dart+stars:>1000&sort=stars&per_page=6');
+        const data = await response.json();
+        
+        if (data.items && data.items.length > 0) {
+            technologiesCache = data.items.map(repo => ({
+                name: repo.name.charAt(0).toUpperCase() + repo.name.slice(1),
+                description: repo.description || 'Popular open-source project',
+                language: repo.language || 'Dart',
+                stars: repo.stargazers_count,
+                link: repo.html_url
+            }));
+            displayTechnologies(technologiesCache);
+        } else {
+            throw new Error('No data');
+        }
+    } catch (err) {
+        console.log('Using fallback technologies');
+        technologiesCache = getDefaultTechnologies();
+        displayTechnologies(technologiesCache);
+    }
+}
+
+function getDefaultTechnologies() {
+    return [
+        {
+            name: "Flutter",
+            description: "Google's UI framework for building beautiful, natively compiled mobile applications across iOS and Android.",
+            language: "Dart",
+            stars: 160000,
+            link: "https://flutter.dev"
+        },
+        {
+            name: "Firebase",
+            description: "Complete app development platform with authentication, real-time database, storage, and cloud functions.",
+            language: "Multiple",
+            stars: 25000,
+            link: "https://firebase.google.com"
+        },
+        {
+            name: "Provider",
+            description: "A reactive state management library for Flutter with excellent performance and easy-to-understand API.",
+            language: "Dart",
+            stars: 5000,
+            link: "https://pub.dev/packages/provider"
+        },
+        {
+            name: "Getx",
+            description: "High-performance state management, smart route management and dependency injection all in one package.",
+            language: "Dart",
+            stars: 9000,
+            link: "https://pub.dev/packages/get"
+        },
+        {
+            name: "Riverpod",
+            description: "A reactive caching and data-binding framework for Dart/Flutter with compile-time safety.",
+            language: "Dart",
+            stars: 4000,
+            link: "https://pub.dev/packages/riverpod"
+        },
+        {
+            name: "Supabase",
+            description: "Open-source Firebase alternative with PostgreSQL backend, real-time subscriptions, and Auth.",
+            language: "Multiple",
+            stars: 20000,
+            link: "https://supabase.com"
+        }
+    ];
+}
+
+function displayTechnologies(techs) {
+    const grid = document.getElementById('articlesGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    techs.forEach(tech => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.cursor = 'pointer';
+        card.onclick = () => window.open(tech.link, '_blank');
+        card.innerHTML = `
+            <span class="card-tag">${tech.language}</span>
+            <h4>${tech.name}</h4>
+            <p>${tech.description}</p>
+            <small style="color: #22c55e; font-weight: 600;">⭐ ${tech.stars.toLocaleString()} stars</small>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// Contact Functions
+function openContactModal(type) {
+    if (type === 'email') {
+        document.getElementById('emailForm').style.display = 'block';
+        document.getElementById('upworkSection').style.display = 'none';
+    } else if (type === 'upwork') {
+        document.getElementById('emailForm').style.display = 'none';
+        document.getElementById('upworkSection').style.display = 'block';
+    }
+}
+
+function closeContactForm() {
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('upworkSection').style.display = 'none';
+}
+
+function sendEmail(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const subject = document.getElementById('subjectInput').value;
+    const message = document.getElementById('messageInput').value;
+    
+    // Encode message for mailto link
+    const mailtoLink = `mailto:afzaal311@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    
+    // Alternative: Use a simple alert for demo, or integrate with a backend service
+    alert(`Message Ready!\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nIn production, this would be sent via your backend email service.`);
+    closeContactForm();
+}
+</script>
+
+
+      <section id="articles" class="page-screen">
+        <h1>Latest Technologies & Insights</h1>
+        <p class="content-text">Exploring cutting-edge tools, frameworks, and practices in modern development.</p>
+        <div class="grid" id="articlesGrid">
+          <div class="card" style="opacity: 0.5;">
+            <span class="card-tag">Loading...</span>
+            <h4>Fetching Technologies</h4>
+            <p>Searching for the latest frameworks and tools...</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="page-screen">
+        <h1>Get in Touch</h1>
+        <p class="content-text">Choose your preferred way to reach out. I'm always excited to discuss new projects!</p>
+        
+        <!-- Contact Logistics Grid -->
+        <div class="contact-grid">
+          <!-- Email Card -->
+          <div class="contact-card" onclick="openContactModal('email')">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <h3>Email</h3>
+            <p>Send me a message directly to my inbox</p>
+            <span class="contact-cta">Send Email →</span>
+          </div>
+
+          <!-- WhatsApp Card -->
+          <div class="contact-card" onclick="window.open('https://wa.me/923285753463', '_blank')">
+            <div class="contact-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+            <h3>WhatsApp</h3>
+            <p>Quick chat for urgent discussions</p>
+            <span class="contact-cta">Message on WhatsApp →</span>
+          </div>
+
+          <!-- Upwork Card -->
+          <div class="contact-card" onclick="openContactModal('upwork')">
+            <div class="contact-icon upwork"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>Upwork</h3>
+            <p>Professional project collaboration</p>
+            <span class="contact-cta">Visit Upwork Profile →</span>
+          </div>
+
+          <!-- LinkedIn Card -->
+          <div class="contact-card" onclick="window.open('https://www.linkedin.com/in/muhammad-afzaal-0019813a7?utm_source=share_via&utm_content=profile&utm_medium=member_android', '_blank')">
+            <div class="contact-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></div>
+            <h3>LinkedIn</h3>
+            <p>Connect professionally and explore opportunities</p>
+            <span class="contact-cta">View Profile →</span>
+          </div>
+        </div>
+
+        <!-- Contact Form for Email -->
+        <div id="emailForm" style="display:none; margin-top:50px;">
+          <h2>Send me a Message</h2>
+          <form onsubmit="sendEmail(event)">
+            <div class="form-group"><input type="text" id="nameInput" placeholder="Your Name" required></div>
+            <div class="form-group"><input type="email" id="emailInput" placeholder="Your Email" required></div>
+            <div class="form-group"><input type="text" id="subjectInput" placeholder="Subject" required></div>
+            <div class="form-group"><textarea id="messageInput" rows="5" placeholder="Your Message" required></textarea></div>
+            <button type="submit" class="send-btn">Send Message</button>
+            <button type="button" class="cancel-btn" onclick="closeContactForm()">Cancel</button>
+          </form>
+        </div>
+
+        <!-- Upwork Section -->
+        <div id="upworkSection" style="display:none; margin-top:50px;">
+          <h2>Upwork Collaboration</h2>
+          <div style="background: #f8fafc; padding: 30px; border-radius: 16px; border-left: 5px solid var(--accent-green);">
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">
+              I'm available on Upwork for exciting projects in Flutter development, mobile app design, and backend integration. My profile showcases my portfolio, ratings, and detailed project experience.
+            </p>
+            <a href="https://www.upwork.com/freelancers/~01bc7399f70c158200" target="_blank" class="send-btn" style="display: inline-block; text-decoration: none;">
+              <i class="fa-brands fa-upwork"></i> Visit My Upwork Profile
+            </a>
+            <button type="button" onclick="closeContactForm()" class="cancel-btn" style="margin-left: 10px;">Close</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <a href="https://wa.me/923285753463" class="wa-btn" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+  </a>
+
+  
+  
 </body>
 </html>
