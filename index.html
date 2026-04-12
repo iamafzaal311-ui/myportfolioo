@@ -24,8 +24,42 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-white); color: var(--text-main); overflow-x: hidden; }
 
+    /* App Bar */
+    .app-bar {
+      background: var(--bg-white);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1001;
+    }
+    .app-bar .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .app-bar .profile-card img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .app-bar .profile-card img:hover { transform: scale(1.05); }
+    .app-bar .profile-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 0;
+    }
+
     /* Layout Container */
-    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 73px); }
 
     /* --- SIDEBAR --- */
     .sidebar {
@@ -527,20 +561,15 @@
 </head>
 <body>
 
+  <header class="app-bar">
+    <div class="profile-card">
+      <img src="profile.jpeg" alt="M. Afzaal" title="Click to enlarge profile photo" tabindex="0" onclick="expandImage(this.src)" onkeydown="if (event.key === 'Enter' || event.key === ' ') expandImage(this.src)">
+      <h3>Muhammad Afzaal</h3>
+    </div>
+  </header>
+
   <div class="layout">
     <aside class="sidebar">
-      <div class="profile-card">
-        <img src="profile.jpeg" alt="M. Afzaal" title="Click to enlarge profile photo" tabindex="0" onclick="expandImage(this.src)" onkeydown="if (event.key === 'Enter' || event.key === ' ') expandImage(this.src)">
-        <div class="profile-info">
-          <h3>Muhammad Afzaal</h3>
-          <p>Developer</p>
-          <div class="profile-details" style="margin-top:8px; font-size:13px; color: var(--text-muted); line-height:1.5;">
-            <p style="margin:0;">Flutter & Dart enthusiast</p>
-            <p style="margin:0;">Firebase authentication & real-time sync</p>
-            <p style="margin:0;">Clean UI, fast app performance</p>
-          </div>
-        </div>
-      </div>
 
       <nav class="nav-menu">
         <button class="nav-btn active" onclick="showPage('home')"><i class="fa-solid fa-bolt"></i> Home</button>
