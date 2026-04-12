@@ -98,6 +98,34 @@
     }
     .resume-download:hover { opacity: 0.9; }
 
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1100;
+      background: var(--text-main);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    .mobile-menu-btn i { font-size: 16px; }
+
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 1000;
+    }
+    .sidebar-overlay.active { opacity: 1; pointer-events: all; }
+
     /* --- MAIN CONTENT AREA --- */
     .main-viewport { padding: 60px 8%; position: relative; background: #fef8f0; min-height: 100vh; }
     .page-screen { display: none; animation: fadeIn 0.4s ease-out; }
@@ -461,21 +489,28 @@
     @media (max-width: 1024px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar {
-        display: flex;
-        position: relative;
-        width: 100%;
-        height: auto;
-        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        max-width: 85%;
+        height: 100vh;
+        transform: translateX(-110%);
+        transition: transform 0.25s ease;
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 24px 16px;
+        border-bottom: none;
         background: var(--sidebar-bg);
+        padding: 32px 18px;
+        box-shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+        z-index: 1001;
       }
+      .sidebar.open { transform: translateX(0); }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
       .profile-card { margin-bottom: 24px; }
-      .nav-menu { flex-direction: row; flex-wrap: wrap; gap: 8px; }
-      .nav-btn { flex: 1 1 calc(50% - 8px); padding: 10px 12px; border-radius: 14px; text-align: center; }
-      .nav-menu .nav-btn i { width: auto; }
-      .main-viewport { padding: 30px 16px; }
+      .nav-menu { flex-direction: column; gap: 10px; }
+      .nav-btn { flex: 1 1 100%; padding: 12px 14px; border-radius: 14px; text-align: left; }
+      .nav-menu .nav-btn i { width: 20px; }
+      .main-viewport { padding: 80px 16px 30px; }
       h1 { font-size: 32px; }
       .grid { gap: 18px; }
     }
@@ -485,6 +520,8 @@
       .card { padding: 20px; }
       .content-text { font-size: 16px; }
       h1 { font-size: 28px; }
+      .resume-download { padding: 14px 18px; }
+      .wa-btn { right: 16px; bottom: 16px; padding: 12px 18px; }
     }
   </style>
 </head>
@@ -497,6 +534,11 @@
         <div class="profile-info">
           <h3>Muhammad Afzaal</h3>
           <p>Developer</p>
+          <div class="profile-details" style="margin-top:8px; font-size:13px; color: var(--text-muted); line-height:1.5;">
+            <p style="margin:0;">Flutter & Dart enthusiast</p>
+            <p style="margin:0;">Firebase authentication & real-time sync</p>
+            <p style="margin:0;">Clean UI, fast app performance</p>
+          </div>
         </div>
       </div>
 
@@ -520,6 +562,9 @@
         Read Resume <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
       </a>
     </aside>
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
 
     <main class="main-viewport">
       
@@ -1045,6 +1090,30 @@ function showPage(pageId) {
     if (pageId === 'articles') {
         loadTechnologies();
     }
+    closeSidebar();
+}
+
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar || !overlay) return;
+
+    const isOpen = sidebar.classList.contains('open');
+    if (isOpen) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    } else {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+    }
+}
+
+function closeSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar || !overlay) return;
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
 }
 
 // Show Video or Snaps in Media Modal
