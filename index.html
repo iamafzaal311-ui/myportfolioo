@@ -29,7 +29,7 @@
       background: var(--bg-white);
       padding: 16px 20px;
       border-bottom: 1px solid var(--border-color);
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: space-between;
       position: sticky;
@@ -57,18 +57,9 @@
       color: var(--text-main);
       margin: 0;
     }
-    .app-bar .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 18px;
-      color: var(--text-main);
-      cursor: pointer;
-      padding: 8px;
-    }
 
     /* Layout Container */
-    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 73px); }
+    .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
 
     /* --- SIDEBAR --- */
     .sidebar {
@@ -530,7 +521,8 @@
 
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
-      .layout { grid-template-columns: 1fr; }
+      .app-bar { display: flex; }
+      .layout { grid-template-columns: 1fr; min-height: calc(100vh - 73px); }
       .sidebar {
         position: fixed;
         top: 0;
@@ -566,16 +558,6 @@
       .resume-download { padding: 14px 18px; }
       .wa-btn { right: 16px; bottom: 16px; padding: 12px 18px; }
     }
-
-    /* App Bar Display */
-    @media (max-width: 1024px) {
-      .app-bar { display: flex; }
-      .app-bar .mobile-menu-btn { display: block; }
-    }
-    @media (min-width: 1025px) {
-      .app-bar { display: none; }
-      .layout { min-height: 100vh; }
-    }
   </style>
 </head>
 <body>
@@ -585,11 +567,22 @@
       <img src="profile.jpeg" alt="M. Afzaal" title="Click to enlarge profile photo" tabindex="0" onclick="expandImage(this.src)" onkeydown="if (event.key === 'Enter' || event.key === ' ') expandImage(this.src)">
       <h3>Muhammad Afzaal</h3>
     </div>
-    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
   </header>
 
   <div class="layout">
     <aside class="sidebar">
+      <div class="profile-card">
+        <img src="profile.jpeg" alt="M. Afzaal" title="Click to enlarge profile photo" tabindex="0" onclick="expandImage(this.src)" onkeydown="if (event.key === 'Enter' || event.key === ' ') expandImage(this.src)">
+        <div class="profile-info">
+          <h3>Muhammad Afzaal</h3>
+          <p>Developer</p>
+          <div class="profile-details" style="margin-top:8px; font-size:13px; color: var(--text-muted); line-height:1.5;">
+            <p style="margin:0;">Flutter & Dart enthusiast</p>
+            <p style="margin:0;">Firebase authentication & real-time sync</p>
+            <p style="margin:0;">Clean UI, fast app performance</p>
+          </div>
+        </div>
+      </div>
 
       <nav class="nav-menu">
         <button class="nav-btn active" onclick="showPage('home')"><i class="fa-solid fa-bolt"></i> Home</button>
@@ -613,6 +606,7 @@
     </aside>
 
     <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
 
     <main class="main-viewport">
       
