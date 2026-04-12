@@ -521,7 +521,9 @@
 
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
-      .app-bar { display: flex; }
+      .app-bar { display: flex; justify-content: flex-end; padding-left: 60px; }
+      .app-bar .profile-card { flex-direction: row-reverse; gap: 10px; }
+      .app-bar .profile-info { text-align: right; }
       .layout { grid-template-columns: 1fr; min-height: calc(100vh - 73px); }
       .sidebar {
         position: fixed;
