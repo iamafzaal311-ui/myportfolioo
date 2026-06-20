@@ -984,31 +984,33 @@ body::after {
   z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
   background: #25d366;
   color: #fff;
-  padding: 12px 22px;
-  border-radius: 100px;
-  font-weight: 700;
-  font-size: 14px;
+  border-radius: 50%;
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
   transition: all 0.3s ease;
   text-decoration: none;
 }
 .wa-fab:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.05);
   box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
   color: #fff;
 }
 .wa-fab i {
-  font-size: 18px;
+  font-size: 26px;
 }
 @media (max-width: 768px) {
   .wa-fab {
     bottom: 20px;
     right: 20px;
-    padding: 10px 16px;
-    font-size: 12px;
+    width: 48px;
+    height: 48px;
+  }
+  .wa-fab i {
+    font-size: 22px;
   }
 }
 
