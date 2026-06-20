@@ -206,12 +206,26 @@ body:hover #cursor, body:hover #cursorDot { opacity:1; }
 .app-bar {
   display:none; position:sticky; top:0; z-index:200;
   background:var(--bg1); border-bottom:1px solid var(--bdr);
-  padding:10px 16px; align-items:center; gap:10px;
+  padding:10px 16px; align-items:center; gap:12px;
   backdrop-filter:blur(14px);
 }
+.ab-avatar-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--p);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.ab-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .ab-info { flex:1; }
-.ab-name { font-family:'Outfit',sans-serif; font-size:15px; font-weight:700; display:block; }
-.ab-role { font-size:10px; color:var(--txm); }
+.ab-name { font-family:'Outfit',sans-serif; font-size:15px; font-weight:700; display:block; line-height: 1.2; }
+.ab-role { font-size:10px; color:var(--txm); display:block; }
 .ab-menu, .ab-theme {
   background:var(--bg2); border:1px solid var(--bdr); color:var(--tx);
   padding:9px 11px; border-radius:9px; cursor:pointer; font-size:15px;
@@ -961,3 +975,40 @@ body::after {
 .btn-p {
   box-shadow: 0 4px 20px var(--p-glow), inset 0 1px 0 rgba(255,255,255,0.2);
 }
+
+/* ── FLOATING WHATSAPP BUTTON ───────────────────────── */
+.wa-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.wa-fab:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+  color: #fff;
+}
+.wa-fab i {
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  .wa-fab {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
